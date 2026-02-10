@@ -1,0 +1,367 @@
+:root {
+    --primary-color: #ff4d6d;
+    --secondary-color: #ff8fa3;
+    --bg-color: #fff0f3;
+    --text-color: #590d22;
+    --white: #ffffff;
+    --cup-red: #d90429;
+    --cup-white: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden;
+    /* Prevent scrolling */
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Floating Hearts Background */
+.background-hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.heart-bg {
+    position: absolute;
+    color: rgba(255, 77, 109, 0.2);
+    font-size: 2rem;
+    animation: floatUp 10s linear infinite;
+    bottom: -50px;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Game Container */
+.game-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    padding-top: 20px;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    line-height: 1.3;
+}
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Space cups at top, ball at bottom */
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+/* Target Row (Cups and Image) */
+.target-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 100px;
+    width: 100%;
+    margin-top: 20px;
+    position: relative;
+    height: 200px;
+}
+
+/* Cups */
+.cup-wrapper {
+    position: relative;
+    width: 80px;
+    height: 100px;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+#no-cup-wrapper {
+    /* Initially positioned */
+    transition: transform 0.2s ease-out;
+    /* Fast movement for dodging */
+}
+
+#yes-cup-wrapper {
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Bouncy growth */
+}
+
+.cup {
+    width: 70px;
+    height: 90px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cup-brim {
+    width: 80px;
+    height: 20px;
+    background: #e0e0e0;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    border: 2px solid #ccc;
+    box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cup-body {
+    width: 60px;
+    height: 80px;
+    background: linear-gradient(to bottom, #f0f0f0 0%, #dcdcdc 100%);
+    /* Default cup color */
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    position: absolute;
+    top: 10px;
+    z-index: 1;
+    border: 1px solid #ccc;
+    border-top: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cup-label {
+    position: absolute;
+    top: 35px;
+    z-index: 3;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+/* No Cup Styling - Classic Red Solo Style */
+.no-cup .cup-brim {
+    background: #ffcccc;
+    border-color: #ff9999;
+}
+
+.no-cup .cup-body {
+    background: linear-gradient(to bottom, #d90429 0%, #a4031f 100%);
+    border-color: #900;
+}
+
+.no-cup .cup-label {
+    color: white;
+}
+
+/* Yes Cup Styling - Pretty Pink/White */
+.yes-cup .cup-brim {
+    background: #ffe6ea;
+    border-color: #ffb3c1;
+}
+
+.yes-cup .cup-body {
+    background: linear-gradient(to bottom, #ff4d6d 0%, #c9184a 100%);
+    border-color: #a00;
+}
+
+.yes-cup .cup-label {
+    color: white;
+}
+
+/* Heart Image */
+.image-wrapper {
+    width: 180px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    margin: 30px auto 20px auto;
+}
+
+.heart-shaped-image {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    /* Remove Mask */
+    mask-image: none;
+    -webkit-mask-image: none;
+
+    /* Royal Border Style */
+    border-radius: 12px;
+    border: 4px solid #ffd700;
+    /* Gold */
+    box-shadow:
+        0 0 0 4px #b8860b,
+        /* Dark Gold outer ring */
+        0 0 20px rgba(255, 215, 0, 0.6),
+        /* Glow */
+        inset 0 0 10px rgba(0, 0, 0, 0.3);
+    /* Inner depth */
+}
+
+/* Press Indicator */
+.press-indicator {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+    animation: pulse 2s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 10;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+
+/* Throw Area */
+.throw-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    position: relative;
+    height: 150px;
+}
+
+.ball {
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle at 10px 10px, #ffffff, #ddd);
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    bottom: 40px;
+    /* Starting position */
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    z-index: 10;
+}
+
+.instruction {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+/* Animations */
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(0deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(1deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-1deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+.shake {
+    animation: shake 0.5s;
+    animation-iteration-count: 1;
+}
+
+/* Confetti Overlay (optional enhancement) */
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+}

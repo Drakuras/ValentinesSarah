@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Cup Pong</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="background-hearts" id="background-hearts"></div>
+
+    <div class="game-container">
+        <header>
+            <h1>Sarah Agyeiwah Fosu<br>Will you be my Valentine?</h1>
+        </header>
+
+        <div class="main-content">
+
+            <!-- IMAGE -->
+            <div class="image-wrapper">
+                <img src="heart_image.png" alt="Love" class="heart-shaped-image"
+                    onerror="this.onerror=null;this.src='https://placehold.co/150x150/ff69b4/ffffff?text=Image';">
+            </div>
+
+            <div class="target-row">
+                <!-- NO CUP -->
+                <div class="cup-wrapper" id="no-cup-wrapper">
+                    <div class="press-indicator">Press Here</div>
+                    <div class="cup no-cup">
+                        <div class="cup-label">No</div>
+                        <div class="cup-brim"></div>
+                        <div class="cup-body"></div>
+                    </div>
+                </div>
+
+                <!-- YES CUP -->
+                <div class="cup-wrapper" id="yes-cup-wrapper">
+                    <div class="press-indicator">Press Here</div>
+                    <div class="cup yes-cup">
+                        <div class="cup-label">Yes</div>
+                        <div class="cup-brim"></div>
+                        <div class="cup-body"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="throw-area">
+                <div class="ball" id="ball"></div>
+                <p class="instruction">Tap to throw!</p>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>
